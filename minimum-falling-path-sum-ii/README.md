@@ -1,3 +1,4 @@
+[Discussion Post (created on 17/2/2021 at 21:56)](https://leetcode.com/problems/minimum-falling-path-sum-ii/discuss/1114132/Easy-C%2B%2B-Solution)  
 <h2>1289. Minimum Falling Path Sum II</h2><h3>Hard</h3><hr><div><p>Given a square grid&nbsp;of integers&nbsp;<code>arr</code>, a <em>falling path with non-zero shifts</em>&nbsp;is a choice of&nbsp;exactly one element from each row of <code>arr</code>, such that no two elements chosen in adjacent rows are in&nbsp;the same column.</p>
 
 <p>Return the&nbsp;minimum&nbsp;sum of a falling path with non-zero shifts.</p>
