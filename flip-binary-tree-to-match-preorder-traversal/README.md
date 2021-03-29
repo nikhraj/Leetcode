@@ -1,3 +1,4 @@
+[Discussion Post (created on 29/2/2021 at 18:39)](https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/discuss/1132721/Simple-C%2B%2B-dfs-Solution)  
 <h2>971. Flip Binary Tree To Match Preorder Traversal</h2><h3>Medium</h3><hr><div><p>You are given the <code>root</code> of a binary tree with <code>n</code> nodes, where each node is uniquely assigned a value from <code>1</code> to <code>n</code>. You are also given a sequence of <code>n</code> values <code>voyage</code>, which is the <strong>desired</strong> <a href="https://en.wikipedia.org/wiki/Tree_traversal#Pre-order" target="_blank"><strong>pre-order traversal</strong></a> of the binary tree.</p>
 
 <p>Any node in the binary tree can be <strong>flipped</strong> by swapping its left and right subtrees. For example, flipping node 1 will have the following effect:</p>
