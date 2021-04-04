@@ -1,3 +1,4 @@
+[Discussion Post (created on 4/3/2021 at 16:8)](https://leetcode.com/problems/count-good-nodes-in-binary-tree/discuss/1142092/Easy-cpp-Solution)  
 [Discussion Post (created on 4/3/2021 at 16:2)](https://leetcode.com/problems/count-good-nodes-in-binary-tree/discuss/?currentPage=1&orderBy=most_votes&query=)  
 <h2>1448. Count Good Nodes in Binary Tree</h2><h3>Medium</h3><hr><div><p>Given a binary tree <code>root</code>, a node <em>X</em> in the tree is named&nbsp;<strong>good</strong> if in the path from root to <em>X</em> there are no nodes with a value <em>greater than</em> X.</p>
 
