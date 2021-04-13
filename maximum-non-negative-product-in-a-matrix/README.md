@@ -1,3 +1,4 @@
+[Discussion Post (created on 13/3/2021 at 22:10)](https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/discuss/?currentPage=1&orderBy=newest_to_oldest&query=)  
 <h2>1594. Maximum Non Negative Product in a Matrix</h2><h3>Medium</h3><hr><div><p>You are given a&nbsp;<code>rows x cols</code>&nbsp;matrix&nbsp;<code>grid</code>.&nbsp;Initially, you&nbsp;are located at the top-left&nbsp;corner <code>(0, 0)</code>,&nbsp;and in each step, you can only <strong>move right&nbsp;or&nbsp;down</strong> in the matrix.</p>
 
 <p>Among all possible paths starting from the top-left corner&nbsp;<code>(0, 0)</code>&nbsp;and ending in the bottom-right corner&nbsp;<code>(rows - 1, cols - 1)</code>, find the path with the&nbsp;<strong>maximum non-negative product</strong>. The product of a path is the product of all integers in the grid cells visited along the path.</p>
