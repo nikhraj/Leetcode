@@ -5,19 +5,19 @@ public:
         
         deque <int> q;
         int sum=0;
-        int i = 0, j=nums.size();
-        while(i<j)
+        int i = 0, j=0;
+        while(i<nums.size())
         {
             sum+=nums[i];
-            q.push_back(nums[i]);
+            //q.push_back(nums[i]);
             if(sum>=target)
             {
-                ans=min(ans,int(q.size()));
+                //ans=min(ans,i-j);
                 while(sum>=target)
                 {
-                    sum-=q.front();
-                    q.pop_front();
-                    ans=min(ans,int(q.size())+1);
+                    sum-=nums[j];
+                    ans=min(ans,i-j+1);
+                    j++;
                 }
                 //if(sum==target)
                 
