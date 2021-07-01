@@ -24,6 +24,10 @@ public:
         {
             int mid = (l+r)/2;
             int get_target = check(mid,nums,target);
+            if(get_target==target)
+            {
+                return mid;
+            }
             if(get_target>target)
             {
                 if(abs(get_target-target)<possible_target)
@@ -51,14 +55,13 @@ public:
     int check(int mid,vector <int> &nums,int target)
     {
         int index = upper_bound(nums.begin(),nums.end(),mid)-nums.begin();
-       // cout<<mid<<" "<<index<<endl;
+        
         if(index==0)
-                return n*mid;
+            return n*mid;
+        
         if(index<n)
-        {
-            
             return (n-index)*mid+prefix[index-1];
-        }
+        
         return prefix[n-1];
     }
 };
