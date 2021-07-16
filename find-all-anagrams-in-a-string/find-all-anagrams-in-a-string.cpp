@@ -11,39 +11,28 @@ public:
         
         int l=0,r=0;
         
-        for(r=0;r<wn;r++)
-        {
-            m[s[r]-'a']++;
-        }
-        bool f=true;
-        auto temp = m;
         for(char c:p)
-            {
-                if(--temp[c-'a']<0)
-                {
-                    f=false;
-                    break;
-                }
-            }
-        if(f)
-            ans.push_back(l);
-        
+        {
+            m[c-'a']++;
+        }
+        r=0;
+        int count = wn;
         while(r<n)
         {
-            m[s[l++]-'a']--;
-            m[s[r++]-'a']++;
-            f=true;
-            temp=m;
-            for(char c:p)
+            if(--m[s[r]-'a']>=0)
             {
-                if(--temp[c-'a']<0)
-                {
-                    f=false;
-                    break;
-                }
+                count--;
             }
-            if(f)
+            r++;
+            if(count==0)
                 ans.push_back(l);
+            if((r-l)==wn)
+            {
+                if(++m[s[l]-'a']>0)
+                    count++;
+                l++;
+            }
+            
         }
         
         
