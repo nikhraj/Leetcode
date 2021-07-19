@@ -1,54 +1,46 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int i=0;
-        int j=nums.size()-1;
+        
+        int l=0,r=nums.size()-1;
         int ans1=-1,ans2=-1;
-        while(i<=j)
+        while(l<=r)
         {
-            int mid = (i+j)/2;
-            
-            if(nums[mid]<target)
-            {
-                i=mid+1;
-            }
-            else if(nums[mid]>target)
-            {
-                j=mid-1;
-            }
-            else
+            int mid = (l+r)/2;
+            if(nums[mid]==target)
             {
                 ans1=mid;
-                j=mid-1;
-            }
-                
-        }
-        
-        i=0,j=nums.size()-1;
-        
-        
-        while(i<=j)
-        {
-            int mid = (i+j)/2;
-            if(nums[mid]>target)
-            {
-                j=mid-1;
+                r=mid-1;    
             }
             else if(nums[mid]<target)
             {
-                i=mid+1;
+                l=mid+1;
             }
             else
             {
-                ans2=mid;
-                i=mid+1;
+                r=mid-1;
             }
+            
         }
         
-        
-        
+        l=0,r=nums.size()-1;
+        while(l<=r)
+        {
+             int mid = (l+r)/2;
+            if(nums[mid]==target)
+            {
+                ans2=mid;
+                l=mid+1;    
+            }
+            else if(nums[mid]<target)
+            {
+                l=mid+1;
+            }
+            else
+            {
+                r=mid-1;
+            }
+        }
         return {ans1,ans2};
-        
-        
     }
 };
