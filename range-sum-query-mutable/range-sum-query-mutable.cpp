@@ -1,65 +1,54 @@
 class NumArray {
 public:
-    vector <int> tree;
-    vector <int> temp;
     int n;
+    vector <int> tree;
+    vector <int> num;
     NumArray(vector<int>& nums) {
-       // tree=nums;
-        temp=nums;
-        //for(int i:nums)
-          //  tree.push_back(i);
-        n=nums.size()+1;
-        tree.resize(n);
-        for(int i=0;i<n-1;i++)
+        num=nums;
+        n=nums.size();
+        tree.resize(n+1);
+        //tree=nums;
+        for(int i=1;i<=n;i++)
         {
-            add(i+1,nums[i]);
+            int val=nums[i-1];
+            int j=i;
+            while(j<=n)
+            {
+                tree[j]+=val;
+                j+=(j&-j);  
+            }
         }
-        
-    }
-    
-    void add(int i,int val)
-    {
-        //int n=tree.size();
-        int j=i;
-        while(j<n)
-        {
-            
-            tree[j]+=val;
-            j+=(j&-j);
-        }
-        
+        // for(int i:tree)
+        //     cout<<i<<" ";
     }
     
     void update(int index, int val) {
+        int diff = val-num[index];
         index++;
-        int diff = val-temp[index-1];
-        temp[index-1]=val;
-        while(index<n)
+        int j=index;
+        while(j<=n)
         {
-            tree[index]+=diff;
-            index+=(index&-index);
+            tree[j]+=diff;
+            j+=(j&-j);
         }
+        num[index-1]=val;
     }
-    
-    int getsum(int index)
-    {
-        int ans=0;
-        index++;
-        while(index>0)
-        {
-            ans+=tree[index];
-            index-=(index&-index);
-        }
-        return ans;
-    }
-    
     
     int sumRange(int left, int right) {
-       // cout<<getsum(right)<<endl;
-       // for(int i:tree)
-         //   cout<<i<<" ";
-        //cout<<endl;
-        return getsum(right)-getsum(left-1);
+        
+        return sum(right+1)-sum(left);
+    }
+    
+    int sum(int index)
+    {
+        int su=0;
+        int j=index;
+        while(j>0)
+        {
+            su+=tree[j];
+            j-=(j&-j);
+        }
+        return su;
     }
 };
 
