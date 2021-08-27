@@ -11,37 +11,18 @@
  */
 class Solution {
 public:
-    bool dfs(TreeNode *root)
-    {
-       if(!root)
-            return true;
-        int c=0;
-       if(dfs(root->left))
-       {
-           c++;
-           root->left=NULL;
-       }
-       if(dfs(root->right))
-       {
-           c++;
-            root->right=NULL;
-       }
-        
-        if(root->val==0&&c==2)
-        {
-            return true;   
-        }
-        return false;
-    }
-    
     TreeNode* pruneTree(TreeNode* root) {
-        TreeNode *parent=new TreeNode(-1);
-        parent->left=root;
-        if(dfs(root))
-        {
+        if(!root)
             return NULL;
-        }
+        auto left = pruneTree(root->left);
+        auto right = pruneTree(root->right);
         
-        return parent->left;
+        root->left = left;
+        root->right = right;
+        
+        if(root->val==0&&!left&&!right)
+            return NULL;
+        
+        return root;
     }
 };
