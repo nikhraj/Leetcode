@@ -1,24 +1,23 @@
 class Solution {
 public:
-    vector <vector <int>> ans;
-    
-    void dfs(int i,int target,vector <int> &nums,vector <int> v)
-    {
-        if(i>=nums.size()||target<0)
-        {
-            if(target==0)
-            ans.push_back(v);
-            return;
-        }
-        
-        v.push_back(nums[i]);
-        dfs(i,target-nums[i],nums,v);
-        v.erase(v.end()-1);
-        dfs(i+1,target,nums,v);
-    }
-    
     vector<vector<int>> combinationSum(vector<int>& nums, int target) {
-        dfs(0,target,nums,{});
-        return ans;
+		// dp vector to store all possible combinations of the target sum
+        vector <vector <vector <int>>> dp(target+1);
+        dp[0]={{}};
+        for(int &i:nums)
+        {
+		// Iterating through all the elements from array nums aka candidates
+            for(int j=i;j<=target;j++)
+            {
+			// Finding all possible ways to achieve sum j from element i
+                for(auto v:dp[j-i])
+                {
+                    v.push_back(i);
+                    dp[j].push_back(v);
+                }
+            }
+        }
+		// Finally, returning our ans \U0001f643
+        return dp[target];
     }
 };
