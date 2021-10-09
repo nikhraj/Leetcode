@@ -1,80 +1,70 @@
+class TrieNode {
+    public:
+        
+        string word;
+        vector <TrieNode *> next;
+        TrieNode()
+        {
+            word = "";
+            next.resize(26,NULL);
+        }
+};
+
+
 class Solution {
 public:
-    class TrieNode
-    {
-        public:
-            vector <TrieNode *> next;
-            bool word;
-            TrieNode()
-            {
-                next.resize(26,NULL);
-                word=false;
-            }
-    };
-    
-    TrieNode *root;
+    TrieNode *root;    
+    set <string> ans;
     int m,n;
-    void insert(string word)
-    {
-        auto p=root;
-        for(char c:word)
-        {
-            if(!p->next[c-'a'])
-                p->next[c-'a']=new TrieNode();
-            p=p->next[c-'a'];
-        }
-        p->word= true;
-    }
-    
-    vector <string> ans;
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
-        root = new TrieNode();
         m = board.size();
         n = board[0].size();
+        root = new TrieNode();
+        for(string &s:words)
+        {
+            auto p = root;
+            for(char c:s)
+            {
+                if(!p->next[c-'a'])
+                    p->next[c-'a']=new TrieNode();
+                p = p->next[c-'a'];
+            }
+            p->word = s;
+        }
         
-        for(string s:words)
-            insert(s);
-       // dfs(0,0,board,root,"");
         for(int i=0;i<m;i++)
         {
             for(int j=0;j<n;j++)
             {
-                dfs(i,j,board,root,"");
+                dfs(i,j,board,root);
             }
         }
         
-        return ans;
+        return vector <string> (ans.begin(),ans.end());
         
     }
-    
-    void dfs(int i,int j,vector <vector <char>> &board,TrieNode *p,string s)
+    void dfs(int i,int j,vector <vector <char>> &grid,TrieNode *p)
     {
-        if(i<0||j<0||i>=m||j>=n)
+        if(i<0||j<0||i>=m||j>=n||grid[i][j]=='1')
             return;
-        
-        char c=board[i][j];
-        if(c=='1'||!p->next[c-'a'])
-            return;
-        s+=c;
-        
-        p=p->next[c-'a'];
-        if(p->word)
+        char c = grid[i][j];
+       
+        if(!p->next[c-'a'])
         {
-            ans.push_back(s);
-            p->word=false;
+            return;
+        }
+        if(p->next[c-'a']->word!="")
+        {
+            //cout<<"1"<<endl;
+            ans.insert(p->next[c-'a']->word);
         }
         
-        board[i][j]='1';
-            
-        dfs(i-1,j,board,p,s);
-        dfs(i+1,j,board,p,s);
-        dfs(i,j-1,board,p,s);
-        dfs(i,j+1,board,p,s); 
-        
-        board[i][j]=c;
-            
-        
-        
+        grid[i][j]='1';
+        p = p->next[c-'a'];
+        dfs(i-1,j,grid,p);
+        dfs(i+1,j,grid,p);
+        dfs(i,j-1,grid,p);
+        dfs(i,j+1,grid,p);
+        grid[i][j]=c;
     }
-    
 };
