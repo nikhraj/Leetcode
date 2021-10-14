@@ -2,24 +2,20 @@ class Solution {
 public:
     int numSquares(int n) {
         vector <int> dp(n+1,INT_MAX);
-        vector <int> coins;
-        int i=1;
-        while(i*i<(n+1))
-        {
-            coins.push_back(i*i);
-            i++;
-        }
         dp[0]=0;
-        for(int i:coins)
+        for(int i=1;i*i<=n;i++)
         {
-            
-            for(int j = i;j<=n;j++)
+            int i1 = i*i;
+            for(int j=i1;j<=n;j++)
             {
-                dp[j]=min(dp[j],1+dp[j-i]);
+                
+                if(dp[j-i1]>=0)
+                {
+                    dp[j] = min(dp[j],1+dp[j-i1]);
+                }
             }
+            
         }
-        
         return dp[n];
     }
-    
 };
